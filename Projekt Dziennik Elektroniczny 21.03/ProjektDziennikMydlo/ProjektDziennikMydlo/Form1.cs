@@ -1,5 +1,8 @@
+using System.Data.SqlClient;
+
 namespace ProjektDziennikMydlo
 {
+    #region FUNKCJE
     public partial class Form1 : Form
     {
         public Form1()
@@ -41,5 +44,23 @@ namespace ProjektDziennikMydlo
             this.Close();
 
         }
+        #endregion
+        #region ZMIENNE GLOBALNE
+
+        public static class MyGlobals //zmienne dostêpne globalnie w ca³ym APP
+        {
+            public static string connSTR = "datasource=" + File.ReadAllText("adres_ip_serwera") + ";port=" + File.ReadAllText("port_serwera") + ";username=root;password=;database=dziennik; Convert Zero Datetime=True; ";
+            public static int id_uzytkownika = 0;
+            public static string adres_ip_serwera = File.ReadAllText("adres_ip_serwera");
+            public static string port_serwera = File.ReadAllText("port_serwera");
+            public static string imie = "";
+            public static string nazwisko = "";
+            public static string email = "";
+            public static string haslo = "";
+            public static int id_klasy = 0;
+        }
+
+        #endregion
     }
+
 }

@@ -7,9 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace ProjektDziennikMydlo
 {
+
+    #region FUNKCJE, ZMIANY WIDOKÓW
     public partial class WidokPracownik : Form
     {
         List<Panel> listPanel = new List<Panel>();
@@ -18,16 +21,11 @@ namespace ProjektDziennikMydlo
         {
             InitializeComponent();
 
-
-            hScrollBar1.Value = panel4.HorizontalScroll.Value;
-            hScrollBar1.Minimum = panel4.HorizontalScroll.Minimum;
-            hScrollBar1.Maximum = panel4.HorizontalScroll.Maximum;
-            hScrollBar1.Scroll += hScrollBar1_Scroll;
         }
 
         private void hScrollBar1_Scroll(object sender, EventArgs e)
         {
-            panel4.HorizontalScroll.Value = hScrollBar1.Value;
+         
         }
 
         private void WidokPracownik_Load(object sender, EventArgs e)
@@ -47,6 +45,8 @@ namespace ProjektDziennikMydlo
             panel2.Visible = false;
             panel3.Visible = false;
             panel4.Visible = false;
+
+            wybierzUczniaDoUwagi();
 
 
         }
@@ -72,6 +72,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 1;
 
         }
 
@@ -81,6 +82,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 2;
         }
 
         private void butKL2a_Click(object sender, EventArgs e)
@@ -89,6 +91,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 3;
         }
 
         private void butKL2b_Click(object sender, EventArgs e)
@@ -97,6 +100,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 8;
         }
 
         private void butKL3a_Click(object sender, EventArgs e)
@@ -105,6 +109,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 4;
         }
 
         private void but3b_Click(object sender, EventArgs e)
@@ -113,6 +118,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 5;
         }
 
         private void butKL4a_Click(object sender, EventArgs e)
@@ -121,6 +127,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 6;
         }
 
         private void butKL4b_Click(object sender, EventArgs e)
@@ -129,6 +136,7 @@ namespace ProjektDziennikMydlo
             button7.Visible = true;
             button6.Visible = true;
             button5.Visible = true;
+            Form1.MyGlobals.id_klasy = 7;
         }
 
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
@@ -158,5 +166,46 @@ namespace ProjektDziennikMydlo
             panel1.Visible = true;
             panel1.BringToFront();
         }
-    }
+        #endregion
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+    
+        private void wybierzUczniaDoUwagi()
+        {
+
+            string connectionString = Form1.MyGlobals.connSTR;//pobiera string globalny wymagany do polaczenia sie z DB
+            string query = "SELECT * FROM students WHERE class=" + Form1.MyGlobals.id_klasy + "; ";//kwerenda
+            MySqlConnection conn = new MySqlConnection(connectionString);
+            MySqlCommand exec = new MySqlCommand(query, conn);
+            exec.CommandTimeout = 60;
+            MySqlDataReader result;
+            try
+            {
+                conn.Open();
+                result = exec.ExecuteReader();
+                if (result.HasRows)
+                {
+
+                    while (result.Read())
+                    {
+                        //String Item = result.GetString(0) + result.GetString(1);
+                        comboBox1.Items.Clear();
+                        comboBox1.Items.Add(result.GetString(1));
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void WidokPracownik_VisibleChanged(object sender, System.EventArgs e)
+        {
+            wybierzUczniaDoUwagi();
+        }
+        }
 }

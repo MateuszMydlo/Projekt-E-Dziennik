@@ -13,9 +13,6 @@
     <Compile Update="Rejestracja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="WidokPracownik.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="WidokUczen.cs">
       <SubType>Form</SubType>
     </Compile>
