@@ -13,4 +13,13 @@
     <PackageReference Include="MySqlConnector" Version="2.2.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="adres_ip_serwera">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="port_serwera">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

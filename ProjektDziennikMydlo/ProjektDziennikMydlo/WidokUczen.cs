@@ -61,5 +61,13 @@ namespace ProjektDziennikMydlo
         {
 
         }
+
+        private void butPowrot1_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Close();
+            var widokInicialny = new Form1();
+            widokInicialny.ShowDialog();
+        }
     }
 }

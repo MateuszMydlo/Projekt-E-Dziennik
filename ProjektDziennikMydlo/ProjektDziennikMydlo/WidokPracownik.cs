@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using ProjektDziennikMydlo.Logowanie.Modele;
+using ProjektDziennikMydlo.RejestracjaView;
 
 namespace ProjektDziennikMydlo
 {
@@ -17,10 +10,14 @@ namespace ProjektDziennikMydlo
     {
         List<Panel> listPanel = new List<Panel>();
         int index;
-        public WidokPracownik()
+        public WidokPracownik(Rola rola)
         {
             InitializeComponent();
 
+            if(rola != Rola.SuperUser)
+            {
+                buttonRejestracjaUczniów.Visible = false;
+            }
         }
 
         private void hScrollBar1_Scroll(object sender, EventArgs e)
@@ -207,5 +204,19 @@ namespace ProjektDziennikMydlo
         {
             wybierzUczniaDoUwagi();
         }
+
+        private void buttonRejestracjaUczniów_Click(object sender, EventArgs e)
+        {
+            var rejestracja = new Rejestracja();
+            rejestracja.Show();
         }
+
+        private void butPowrot_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Close();
+            var widokInicialny = new Form1();
+            widokInicialny.Show();
+        }
+    }
 }

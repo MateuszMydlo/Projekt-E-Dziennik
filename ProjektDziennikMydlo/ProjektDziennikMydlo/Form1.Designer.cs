@@ -31,14 +31,13 @@
             this.butDalej = new System.Windows.Forms.Button();
             this.radioPracownik = new System.Windows.Forms.RadioButton();
             this.radioUczen = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // butDalej
             // 
             this.butDalej.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.butDalej.Location = new System.Drawing.Point(502, 242);
+            this.butDalej.Location = new System.Drawing.Point(389, 232);
             this.butDalej.Margin = new System.Windows.Forms.Padding(2);
             this.butDalej.Name = "butDalej";
             this.butDalej.Size = new System.Drawing.Size(126, 39);
@@ -71,17 +70,6 @@
             this.radioUczen.Text = "Jestem Uczniem";
             this.radioUczen.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(288, 242);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 39);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Pierwszy raz? Zarejestruj się tutaj!";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -100,7 +88,6 @@
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(919, 398);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.radioUczen);
             this.Controls.Add(this.radioPracownik);
             this.Controls.Add(this.butDalej);
@@ -109,7 +96,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "E-Dziennik";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,7 +108,6 @@
         private Button butDalej;
         private RadioButton radioPracownik;
         private RadioButton radioUczen;
-        private Button button1;
         private Label label1;
     }
 }
