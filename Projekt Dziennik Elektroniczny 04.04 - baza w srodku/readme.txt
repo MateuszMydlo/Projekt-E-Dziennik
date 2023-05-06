@@ -1,3 +1,0 @@
-wrzuciłem na githuba aktualną wersję czego mam. wrzuciłem do mysql (xampp i phpmyadmin) baze danych którą zrobił Franek i ustawiłem program że jest z nią poączony (mam nadzieje że zadziała i u was XD). baza MUSI nazywać się "dziennik". na tą chwilę Klaudia zajmuje sie logowaniem, Ja zajmę się zakładką dla pracownika a Franek z Kamilem zajmiecie się zakładką dla ucznia. są 4 zakładki więc możecie sie podzielić po 2. jeślibyście sie szybko uwinęli to nawjwyżej pomożecie mi ale na tą chwilę niech będzie tak
-
-jak coś to śmiało piszcie do mnie, Franek też dużo ogarnia więc jak Kamil albo Klaudia bedziecie mieć problemy to jakoś to rozwiążemy. jestem otwarty na dyskusje jak coś jakby komuś nie pasowało
