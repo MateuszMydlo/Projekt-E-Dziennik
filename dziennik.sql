@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2023 at 03:06 PM
+-- Generation Time: May 07, 2023 at 08:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -244,6 +244,7 @@ CREATE TABLE `test_schedule` (
   `entry_date` date DEFAULT NULL,
   `subject` int(11) DEFAULT NULL,
   `teacher` int(11) DEFAULT NULL,
+  `class` int(11) NOT NULL,
   `comment` varchar(255) DEFAULT NULL,
   `test_type` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -252,10 +253,10 @@ CREATE TABLE `test_schedule` (
 -- Dumping data for table `test_schedule`
 --
 
-INSERT INTO `test_schedule` (`id_test`, `sheduled_date`, `entry_date`, `subject`, `teacher`, `comment`, `test_type`) VALUES
-(1, '2023-04-09', '2023-03-28', 3, 5, 'testowy sprawdzian1', 'S'),
-(2, '2023-04-10', '2023-03-28', 3, 5, 'testowy sprawdzian2', 'S'),
-(3, '2023-04-06', '2023-03-28', 3, 5, 'testowa kartkówka1', 'K');
+INSERT INTO `test_schedule` (`id_test`, `sheduled_date`, `entry_date`, `subject`, `teacher`, `class`, `comment`, `test_type`) VALUES
+(1, '2023-04-09', '2023-03-28', 3, 5, 0, 'testowy sprawdzian1', 'S'),
+(2, '2023-04-10', '2023-03-28', 3, 5, 0, 'testowy sprawdzian2', 'S'),
+(3, '2023-04-06', '2023-03-28', 3, 5, 0, 'testowa kartkówka1', 'K');
 
 -- --------------------------------------------------------
 
@@ -539,6 +540,7 @@ ALTER TABLE `classes`
 ALTER TABLE `grades`
   ADD CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student`) REFERENCES `students` (`id_student`),
   ADD CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`teacher`) REFERENCES `teachers` (`id_teacher`);
+  ADD CONSTRAINT `grades_ibfk_3` FOREIGN KEY (`subject`) REFERENCES `subjects` (`id_subject`);
 
 --
 -- Constraints for table `students`
@@ -558,6 +560,7 @@ ALTER TABLE `teachers`
 ALTER TABLE `test_schedule`
   ADD CONSTRAINT `test_schedule_ibfk_1` FOREIGN KEY (`teacher`) REFERENCES `teachers` (`id_teacher`),
   ADD CONSTRAINT `test_schedule_ibfk_2` FOREIGN KEY (`subject`) REFERENCES `subjects` (`id_subject`);
+  ADD CONSTRAINT `test_schedule_ibfk_3` FOREIGN KEY (`class`) REFERENCES `classes` (`id_class`);
 
 --
 -- Constraints for table `timetable`
