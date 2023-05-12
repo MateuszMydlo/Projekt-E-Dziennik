@@ -45,6 +45,7 @@
             // 
             // textBoxImie
             // 
+            this.textBoxImie.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxImie.Location = new System.Drawing.Point(134, 27);
             this.textBoxImie.Name = "textBoxImie";
             this.textBoxImie.Size = new System.Drawing.Size(200, 23);
@@ -97,7 +98,7 @@
             this.dateTimePickerDataUrodzenia.Location = new System.Drawing.Point(134, 145);
             this.dateTimePickerDataUrodzenia.Name = "dateTimePickerDataUrodzenia";
             this.dateTimePickerDataUrodzenia.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePickerDataUrodzenia.TabIndex = 6;
+            this.dateTimePickerDataUrodzenia.TabIndex = 5;
             // 
             // label4
             // 
@@ -114,7 +115,7 @@
             this.comboBoxKlasa.Location = new System.Drawing.Point(134, 174);
             this.comboBoxKlasa.Name = "comboBoxKlasa";
             this.comboBoxKlasa.Size = new System.Drawing.Size(200, 23);
-            this.comboBoxKlasa.TabIndex = 8;
+            this.comboBoxKlasa.TabIndex = 6;
             // 
             // label5
             // 
@@ -139,7 +140,7 @@
             this.textBoxEmail.Location = new System.Drawing.Point(134, 87);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(200, 23);
-            this.textBoxEmail.TabIndex = 10;
+            this.textBoxEmail.TabIndex = 3;
             // 
             // ButtonDodajUcznia
             // 
@@ -150,13 +151,12 @@
             this.ButtonDodajUcznia.Text = "Dodaj";
             this.ButtonDodajUcznia.UseVisualStyleBackColor = true;
             this.ButtonDodajUcznia.Click += new System.EventHandler(this.ButtonDodajUcznia_Click);
-
             // 
-            // RejejestracjaUzupełnienieDanych
+            // RejestracjaUzupełnienieDanych
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 260);
+            this.ClientSize = new System.Drawing.Size(380, 263);
             this.Controls.Add(this.ButtonDodajUcznia);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxEmail);

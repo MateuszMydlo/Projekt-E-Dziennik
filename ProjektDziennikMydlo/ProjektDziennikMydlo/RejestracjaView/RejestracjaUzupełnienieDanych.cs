@@ -1,11 +1,12 @@
 ﻿using MySql.Data.MySqlClient;
+using ProjektDziennikMydlo.RejestracjaView.Eventy;
 using ProjektDziennikMydlo.RejestracjaView.Modele;
 
 namespace ProjektDziennikMydlo.RejestracjaView
 {
     public partial class RejestracjaUzupełnienieDanych : Form
     {
-        public event EventHandler MyEvent;
+        public event EventHandler<DodanieUczniaEvent> DodanieUczniaEvent;
 
         public RejestracjaUzupełnienieDanych()
         {
@@ -55,7 +56,6 @@ namespace ProjektDziennikMydlo.RejestracjaView
             }
             return listaKlas;
         }
-        
 
         private void ButtonDodajUcznia_Click(object sender, EventArgs e)
         {
@@ -66,23 +66,51 @@ namespace ProjektDziennikMydlo.RejestracjaView
             var dataUrodzenia = this.dateTimePickerDataUrodzenia.Value;
             var klasa = this.comboBoxKlasa.SelectedValue as Klasa;
 
+            var gdzieDaneNieprawidłowe = new List<string>();
+            if (String.IsNullOrEmpty(imie)) {
+                gdzieDaneNieprawidłowe.Add("Imie");
+            }
+
+            if (String.IsNullOrEmpty(nazwisko))
+            {
+                gdzieDaneNieprawidłowe.Add("Nazwisko");
+            }
+           
+            if (String.IsNullOrEmpty(email))
+            {
+                gdzieDaneNieprawidłowe.Add("Email");
+            }
+
+            if (String.IsNullOrEmpty(pesel))
+            {
+                gdzieDaneNieprawidłowe.Add("Pesel");
+            }
+
+            if (this.comboBoxKlasa.SelectedValue == null)
+            {
+                gdzieDaneNieprawidłowe.Add("Klasa");
+            }
+
+            if(gdzieDaneNieprawidłowe.Any())
+            {
+                var nieprawidłowedaneString = string.Join("\n- ", gdzieDaneNieprawidłowe);
+                MessageBox.Show($"Nieprawidłowe dane w: \n- {nieprawidłowedaneString}");
+                return;
+            }
+
             var uczeń = new Uczeń()
             {
-                 Imię=imie,
-                 Nazwisko=nazwisko,
-                 Email=email,
-                 Pesel=pesel,
-                 DataUrodzenia=$"{dataUrodzenia.Year}-{dataUrodzenia.Month}-{dataUrodzenia.Day}",
-                 Klasa=Int32.Parse(klasa.Id),
+                Imię = imie,
+                Nazwisko = nazwisko,
+                Email = email,
+                Pesel = pesel,
+                DataUrodzenia = $"{dataUrodzenia.Year}-{dataUrodzenia.Month}-{dataUrodzenia.Day}",
+                Klasa = Int32.Parse(klasa.Id),
             };
 
-            MyEvent(this, e);
+            DodanieUczniaEvent?.Invoke(this, new DodanieUczniaEvent(uczeń));
             this.Hide();
             this.Close();
         }
-    }
-
-    public class SomeEventHandler
-    {
     }
 }

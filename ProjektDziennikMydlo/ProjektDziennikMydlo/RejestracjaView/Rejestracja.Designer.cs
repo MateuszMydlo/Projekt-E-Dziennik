@@ -28,69 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.buttonDodajUcznia = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            anulujButton = new Button();
+            zapiszButton = new Button();
+            buttonDodajUcznia = new Button();
+            dataGridViewUczniowie = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUczniowie).BeginInit();
+            SuspendLayout();
             // 
-            // button1
+            // anulujButton
             // 
-            this.button1.Location = new System.Drawing.Point(621, 415);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            anulujButton.Location = new Point(710, 553);
+            anulujButton.Margin = new Padding(3, 4, 3, 4);
+            anulujButton.Name = "anulujButton";
+            anulujButton.Size = new Size(86, 31);
+            anulujButton.TabIndex = 0;
+            anulujButton.Text = "Anuluj";
+            anulujButton.UseVisualStyleBackColor = true;
+            anulujButton.Click += anulujButton_Click;
             // 
-            // button2
+            // zapiszButton
             // 
-            this.button2.Location = new System.Drawing.Point(702, 415);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(12, 45);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(765, 364);
-            this.listBox1.TabIndex = 2;
+            zapiszButton.Location = new Point(802, 553);
+            zapiszButton.Margin = new Padding(3, 4, 3, 4);
+            zapiszButton.Name = "zapiszButton";
+            zapiszButton.Size = new Size(86, 31);
+            zapiszButton.TabIndex = 1;
+            zapiszButton.Text = "Zapisz";
+            zapiszButton.UseVisualStyleBackColor = true;
+            zapiszButton.Click += zapiszButton_Click;
             // 
             // buttonDodajUcznia
             // 
-            this.buttonDodajUcznia.Location = new System.Drawing.Point(621, 16);
-            this.buttonDodajUcznia.Name = "buttonDodajUcznia";
-            this.buttonDodajUcznia.Size = new System.Drawing.Size(156, 23);
-            this.buttonDodajUcznia.TabIndex = 3;
-            this.buttonDodajUcznia.Text = "Dodaj ucznia";
-            this.buttonDodajUcznia.UseVisualStyleBackColor = true;
-            this.buttonDodajUcznia.Click += new System.EventHandler(this.buttonDodajUcznia_Click);
+            buttonDodajUcznia.Location = new Point(710, 21);
+            buttonDodajUcznia.Margin = new Padding(3, 4, 3, 4);
+            buttonDodajUcznia.Name = "buttonDodajUcznia";
+            buttonDodajUcznia.Size = new Size(178, 31);
+            buttonDodajUcznia.TabIndex = 3;
+            buttonDodajUcznia.Text = "Dodaj ucznia";
+            buttonDodajUcznia.UseVisualStyleBackColor = true;
+            buttonDodajUcznia.Click += buttonDodajUcznia_Click;
+            // 
+            // dataGridViewUczniowie
+            // 
+            dataGridViewUczniowie.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewUczniowie.Location = new Point(12, 59);
+            dataGridViewUczniowie.Name = "dataGridViewUczniowie";
+            dataGridViewUczniowie.RowHeadersWidth = 51;
+            dataGridViewUczniowie.RowTemplate.Height = 29;
+            dataGridViewUczniowie.Size = new Size(876, 487);
+            dataGridViewUczniowie.TabIndex = 4;
+            dataGridViewUczniowie.CellMouseClick += dataGridViewUczniowie_CellMouseClick;
             // 
             // Rejestracja
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 451);
-            this.Controls.Add(this.buttonDodajUcznia);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Name = "Rejestracja";
-            this.Text = "Rejestracja";
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(907, 601);
+            Controls.Add(dataGridViewUczniowie);
+            Controls.Add(buttonDodajUcznia);
+            Controls.Add(zapiszButton);
+            Controls.Add(anulujButton);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "Rejestracja";
+            Text = "Rejestracja";
+            ((System.ComponentModel.ISupportInitialize)dataGridViewUczniowie).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
-        private Button button2;
-        private ListBox listBox1;
+        private Button anulujButton;
+        private Button zapiszButton;
         private Button buttonDodajUcznia;
+        private DataGridView dataGridViewUczniowie;
     }
 }
