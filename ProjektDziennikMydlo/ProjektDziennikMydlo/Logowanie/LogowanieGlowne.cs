@@ -1,10 +1,12 @@
 ﻿using ProjektDziennikMydlo.Logowanie.Serwisy;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ProjektDziennikMydlo
 {
     public partial class LogowanieGlowne : Form
     {
         private readonly bool _czyUczeń;
+        public static string mailZalogowanego = "";
         public LogowanieGlowne(bool czyUczeń)
         {
 
@@ -37,6 +39,7 @@ namespace ProjektDziennikMydlo
             {
                 this.Hide();
                 var widokUczeń= new WidokUczen();
+                mailZalogowanego = emailInput.ToString();
                 widokUczeń.ShowDialog();
                 this.Close();
                 return;

@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using MySqlConnector;
 
 namespace ProjektDziennikMydlo
 {
     public partial class WidokUczen : Form
     {
+        static string connectionString = Form1.MyGlobals.connSTR; //pobiera string globalny wymagany do polaczenia sie z DB
+        MySqlConnection conn = new MySqlConnection(connectionString);
+        
+
         List<Panel> listPanel = new List<Panel>();
         int index;
         public WidokUczen()
@@ -19,55 +25,81 @@ namespace ProjektDziennikMydlo
             InitializeComponent();
         }
 
-        private void butPowrot1_Click(object sender, EventArgs e)
+        private void butPowrot1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            LogowanieGlowne f2 = new LogowanieGlowne(true);
-            //Logowanie f3 = new Logowanie();
-            f2.ShowDialog();
+            LogowanieGlowne f3 = new LogowanieGlowne(true);
+            f3.ShowDialog();
             this.Close();
+        }
+
+        #region Frankowe
+        private void WidokUczen_Load_1(object sender, EventArgs e)
+        {
+            string ktoZalogowany = LogowanieGlowne.mailZalogowanego;
+            string query = $"SELECT name, surname FROM students WHERE email = '{ktoZalogowany}'";//kwerenda
+            MySqlCommand exec = new MySqlCommand(query, conn);
+            exec.CommandTimeout = 60;
+            MySqlDataReader result;
+            try
+            {
+                conn.Open();
+                result = exec.ExecuteReader();
+                if (result.HasRows)
+                {
+
+                    while (result.Read())
+                    {
+
+                    }
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            conn.Open();
+            result = exec.ExecuteReader();
+            result.Read();
+
+            string studentName = $"{result[0]} {result[1]}";
+            powitanieImie.Text = $"Zalogowano jako: {studentName}";
+            panelMojeDane.BringToFront();
+            conn.Close();
+        }
+
+        private void butMojeDane_Click(object sender, EventArgs e)
+        {
+            /*this.Hide();
+            WidokUczen f5 = new WidokUczen();
+            f5.ShowDialog();
+            this.Close();*/
+            panelMojeDane.BringToFront();
+            string query = "SELECT name, surname FROM students WHERE id_student = 1";
         }
 
         private void butPlanLek_Click(object sender, EventArgs e)
         {
-            panel1.BringToFront();
+            panelPlanLekcji.BringToFront();
         }
 
         private void butOceny_Click(object sender, EventArgs e)
         {
-            panel2.BringToFront();
+            panelOceny.BringToFront();
+
+            // Creating a label
+            Label label = new Label();
+            label.Text = "Polski";
+
+            // Add the label control to the TableLayoutPanel in the second row and third column
+            tabelaOceny.Controls.Add(label, 0, 1);
         }
 
-        private void butFrek_Click(object sender, EventArgs e)
-        {
-            panel3.BringToFront();
-        }
+        #endregion
 
-        private void butTerminy_Click(object sender, EventArgs e)
-        {
-            panel5.BringToFront();
-        }
+        #region Kamilowe
 
-        private void WidokUczen_Load(object sender, EventArgs e)
-        {
-            listPanel.Add(panel1);
-            listPanel.Add(panel2);
-            listPanel.Add(panel3);
-            listPanel.Add(panel4);
-            panel1.BringToFront();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void butPowrot1_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            this.Close();
-            var widokInicialny = new Form1();
-            widokInicialny.ShowDialog();
-        }
+        #endregion
     }
 }
