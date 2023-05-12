@@ -28,71 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            anulujButton = new Button();
-            zapiszButton = new Button();
-            buttonDodajUcznia = new Button();
-            dataGridViewUczniowie = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewUczniowie).BeginInit();
-            SuspendLayout();
+            this.anulujButton = new System.Windows.Forms.Button();
+            this.zapiszButton = new System.Windows.Forms.Button();
+            this.buttonDodajUcznia = new System.Windows.Forms.Button();
+            this.dataGridViewUczniowie = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUczniowie)).BeginInit();
+            this.SuspendLayout();
             // 
             // anulujButton
             // 
-            anulujButton.Location = new Point(710, 553);
-            anulujButton.Margin = new Padding(3, 4, 3, 4);
-            anulujButton.Name = "anulujButton";
-            anulujButton.Size = new Size(86, 31);
-            anulujButton.TabIndex = 0;
-            anulujButton.Text = "Anuluj";
-            anulujButton.UseVisualStyleBackColor = true;
-            anulujButton.Click += anulujButton_Click;
+            this.anulujButton.Location = new System.Drawing.Point(621, 415);
+            this.anulujButton.Name = "anulujButton";
+            this.anulujButton.Size = new System.Drawing.Size(75, 23);
+            this.anulujButton.TabIndex = 0;
+            this.anulujButton.Text = "Anuluj";
+            this.anulujButton.UseVisualStyleBackColor = true;
+            this.anulujButton.Click += new System.EventHandler(this.anulujButton_Click);
             // 
             // zapiszButton
             // 
-            zapiszButton.Location = new Point(802, 553);
-            zapiszButton.Margin = new Padding(3, 4, 3, 4);
-            zapiszButton.Name = "zapiszButton";
-            zapiszButton.Size = new Size(86, 31);
-            zapiszButton.TabIndex = 1;
-            zapiszButton.Text = "Zapisz";
-            zapiszButton.UseVisualStyleBackColor = true;
-            zapiszButton.Click += zapiszButton_Click;
+            this.zapiszButton.Location = new System.Drawing.Point(702, 415);
+            this.zapiszButton.Name = "zapiszButton";
+            this.zapiszButton.Size = new System.Drawing.Size(75, 23);
+            this.zapiszButton.TabIndex = 1;
+            this.zapiszButton.Text = "Zapisz";
+            this.zapiszButton.UseVisualStyleBackColor = true;
+            this.zapiszButton.Click += new System.EventHandler(this.zapiszButton_Click);
             // 
             // buttonDodajUcznia
             // 
-            buttonDodajUcznia.Location = new Point(710, 21);
-            buttonDodajUcznia.Margin = new Padding(3, 4, 3, 4);
-            buttonDodajUcznia.Name = "buttonDodajUcznia";
-            buttonDodajUcznia.Size = new Size(178, 31);
-            buttonDodajUcznia.TabIndex = 3;
-            buttonDodajUcznia.Text = "Dodaj ucznia";
-            buttonDodajUcznia.UseVisualStyleBackColor = true;
-            buttonDodajUcznia.Click += buttonDodajUcznia_Click;
+            this.buttonDodajUcznia.Location = new System.Drawing.Point(621, 16);
+            this.buttonDodajUcznia.Name = "buttonDodajUcznia";
+            this.buttonDodajUcznia.Size = new System.Drawing.Size(156, 23);
+            this.buttonDodajUcznia.TabIndex = 3;
+            this.buttonDodajUcznia.Text = "Dodaj ucznia";
+            this.buttonDodajUcznia.UseVisualStyleBackColor = true;
+            this.buttonDodajUcznia.Click += new System.EventHandler(this.buttonDodajUcznia_Click);
             // 
             // dataGridViewUczniowie
             // 
-            dataGridViewUczniowie.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewUczniowie.Location = new Point(12, 59);
-            dataGridViewUczniowie.Name = "dataGridViewUczniowie";
-            dataGridViewUczniowie.RowHeadersWidth = 51;
-            dataGridViewUczniowie.RowTemplate.Height = 29;
-            dataGridViewUczniowie.Size = new Size(876, 487);
-            dataGridViewUczniowie.TabIndex = 4;
-            dataGridViewUczniowie.CellMouseClick += dataGridViewUczniowie_CellMouseClick;
+            this.dataGridViewUczniowie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUczniowie.Location = new System.Drawing.Point(10, 44);
+            this.dataGridViewUczniowie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridViewUczniowie.Name = "dataGridViewUczniowie";
+            this.dataGridViewUczniowie.RowHeadersWidth = 51;
+            this.dataGridViewUczniowie.RowTemplate.Height = 29;
+            this.dataGridViewUczniowie.Size = new System.Drawing.Size(766, 365);
+            this.dataGridViewUczniowie.TabIndex = 4;
+            this.dataGridViewUczniowie.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewUczniowie_CellMouseClick);
             // 
             // Rejestracja
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(907, 601);
-            Controls.Add(dataGridViewUczniowie);
-            Controls.Add(buttonDodajUcznia);
-            Controls.Add(zapiszButton);
-            Controls.Add(anulujButton);
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "Rejestracja";
-            Text = "Rejestracja";
-            ((System.ComponentModel.ISupportInitialize)dataGridViewUczniowie).EndInit();
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(794, 451);
+            this.Controls.Add(this.dataGridViewUczniowie);
+            this.Controls.Add(this.buttonDodajUcznia);
+            this.Controls.Add(this.zapiszButton);
+            this.Controls.Add(this.anulujButton);
+            this.Name = "Rejestracja";
+            this.Text = "Rejestracja";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUczniowie)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
