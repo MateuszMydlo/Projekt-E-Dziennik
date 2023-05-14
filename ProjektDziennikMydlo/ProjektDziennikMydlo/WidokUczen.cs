@@ -22,11 +22,11 @@ namespace ProjektDziennikMydlo
 
         List<Panel> listPanel = new List<Panel>();
         int index;
+        
         public WidokUczen()
         {
             InitializeComponent();
         }
-
         private void butPowrot1_Click_1(object sender, EventArgs e)
         {
             this.Hide();
@@ -36,6 +36,20 @@ namespace ProjektDziennikMydlo
         }
 
         #region Frankowe
+
+        private System.Windows.Forms.Timer timer;
+        private void autoUpdateCzasu()
+        {
+            dataCzas.Text = DateTime.Now.ToString();
+
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000; // Update every second
+            timer.Tick += Timer_Tick;
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            dataCzas.Text = DateTime.Now.ToString();
+        }
         private void WidokUczen_Load_1(object sender, EventArgs e)
         {
             string ktoZalogowany = LogowanieGlowne.mailZalogowanego;
@@ -69,44 +83,179 @@ namespace ProjektDziennikMydlo
             powitanieImie.Text = $"Zalogowano jako: {studentName}";
             conn.Close();
 
-            query = $"SELECT grade, type FROM grades INNER JOIN students ON grades.student = students.id_student WHERE students.email = '{ktoZalogowany}'";
-            exec = new MySqlCommand(query, conn);
-            exec.CommandTimeout = 60;
-            conn.Open();
-            result = exec.ExecuteReader();
-            result.Read();
-            for (int i = 0; i < 2; i++)
-            {
-
-                testWypisania.AppendText($"{result[i]} ");
-
-            }
-            result.Read();
-            for (int i = 0; i < 2; i++)
-            {
-
-                testWypisania.AppendText($"{result[i]} ");
-
-            }
-            conn.Close();
+            autoUpdateCzasu();
+            timer.Start();
 
             panelMojeDane.BringToFront();
 
         }
-
         private void butMojeDane_Click(object sender, EventArgs e)
         {
-            /*this.Hide();
-            WidokUczen f5 = new WidokUczen();
-            f5.ShowDialog();
-            this.Close();*/
             panelMojeDane.BringToFront();
-            //string query = "SELECT name, surname FROM students WHERE id_student = 1";
         }
         private void butPlanLek_Click(object sender, EventArgs e)
         {
-            panelPlanLekcji.BringToFront();
+            //panelPlanLekcji.BringToFront();
             string ktoZalogowany = LogowanieGlowne.mailZalogowanego;
+            Control cellControl;
+
+            string query;
+            MySqlCommand exec;
+            MySqlDataReader result;
+
+            int jakiDzien = 0; ;
+
+            //dni tygodnia
+            for (int i = 1; i < 6; i++)
+            {
+                cellControl = tabelaPlanLekcji.GetControlFromPosition(i, 0);
+                if (!(cellControl is RichTextBox))
+                {
+                    RichTextBox label = new RichTextBox();
+                    label.Dock = DockStyle.Fill;
+                    label.BackColor = Color.DimGray;
+                    label.ReadOnly = true;
+                    //label.Enabled = false;
+                    label.BorderStyle = BorderStyle.None;
+                    label.SelectionColor = Color.WhiteSmoke;
+                    label.SelectionFont = new Font(label.Font.FontFamily, 16);
+
+                    label.SelectionAlignment = HorizontalAlignment.Center;
+                    switch (i)
+                    {
+                        case 1:
+                            label.AppendText($"Poniedziałek");
+                            break;
+                        case 2:
+                            label.AppendText($"Wtorek");
+                            break;
+                        case 3:
+                            label.AppendText($"Środa");
+                            break;
+                        case 4:
+                            label.AppendText($"Czwartek");
+                            break;
+                        case 5:
+                            label.AppendText($"Piątek");
+                            break;
+                    }
+                    tabelaPlanLekcji.Controls.Add(label, i, 0);
+                    tabelaPlanLekcji.Controls.Remove(cellControl);
+
+                }
+            }
+
+            //godziny
+            for (int i = 1; i < 10; i++)
+            {
+                cellControl = tabelaPlanLekcji.GetControlFromPosition(0, i);
+                if (!(cellControl is RichTextBox))
+                {
+                    RichTextBox label = new RichTextBox();
+                    label.Dock = DockStyle.Fill;
+                    label.BackColor = Color.DimGray;
+                    label.ReadOnly = true;
+                    //label.Enabled = false;
+                    label.BorderStyle = BorderStyle.None;
+                    label.SelectionColor = Color.WhiteSmoke;
+                    label.SelectionFont = new Font(label.Font.FontFamily, 16);
+
+                    label.SelectionAlignment = HorizontalAlignment.Center;
+                    switch (i)
+                    {
+                        case 1:
+                            label.AppendText($"7");
+                            break;
+                        case 2:
+                            label.AppendText($"8");
+                            break;
+                        case 3:
+                            label.AppendText($"9");
+                            break;
+                        case 4:
+                            label.AppendText($"10");
+                            break;
+                        case 5:
+                            label.AppendText($"11");
+                            break;
+                        case 6:
+                            label.AppendText($"12");
+                            break;
+                        case 7:
+                            label.AppendText($"13");
+                            break;
+                        case 8:
+                            label.AppendText($"14");
+                            break;
+                        case 9:
+                            label.AppendText($"15");
+                            break;
+                    }
+                    tabelaPlanLekcji.Controls.Add(label, 0, i);
+                    tabelaPlanLekcji.Controls.Remove(cellControl);
+
+                }
+            }
+
+            //plan lekcji
+            for (int i = 1; i < 6; i++) //przechodzi po kolumnach
+            {
+                switch (i)
+                {
+                    case 1:
+                        jakiDzien = 2;
+                        break;
+                    case 2:
+                        jakiDzien = 3;
+                        break;
+                    case 3:
+                        jakiDzien = 4;
+                        break;
+                    case 4:
+                        jakiDzien = 5;
+                        break;
+                    case 5:
+                        jakiDzien = 6;
+                        break;
+                } //ustala jaki jest dzień
+                for (int j = 1; j < 10; j++) //przechodzi po wierszach
+                {
+                    cellControl = tabelaPlanLekcji.GetControlFromPosition(i, j);
+                    if (!(cellControl is RichTextBox))
+                    {
+                        RichTextBox label = new RichTextBox();
+                        label.Dock = DockStyle.Fill;
+                        label.BackColor = Color.Gray;
+                        label.ReadOnly = true;
+                        label.BorderStyle = BorderStyle.None;
+                        label.SelectionColor = Color.WhiteSmoke;
+                        label.SelectionFont = new Font(label.Font.FontFamily, 12);
+                        label.SelectionAlignment = HorizontalAlignment.Center;
+                        int godzina = j + 6;
+                        query = $"SELECT subjects.name, teachers.name, teachers.surname FROM timetable "
+                            + $"INNER JOIN classes ON timetable.class = classes.id_class "
+                            + $"INNER JOIN students ON classes.id_class = students.class "
+                            + $"INNER JOIN teachers ON timetable.teacher = teachers.id_teacher "
+                            + $"INNER JOIN subjects ON timetable.subject = subjects.id_subject "
+                            + $"WHERE day_of_the_week = {jakiDzien} AND students.email = '{ktoZalogowany}' AND hour = {godzina}";
+
+                        exec = new MySqlCommand(query, conn);
+                        conn.Open();
+                        result = exec.ExecuteReader();
+                        if (result.HasRows)
+                        {
+                            result.Read();
+                            label.AppendText($"{result[0]}\n{result[1]} {result[2]}");
+                            tabelaPlanLekcji.Controls.Add(label, i, j);
+                            tabelaPlanLekcji.Controls.Remove(cellControl);
+                        }
+                        conn.Close();
+                    }
+
+                }
+            }
+
+            panelPlanLekcji.BringToFront();
         }
         public int[] ileMaOcen(string ktoZalogowany)
         {
@@ -141,16 +290,8 @@ namespace ProjektDziennikMydlo
         }
         private void butOceny_Click(object sender, EventArgs e)
         {
-            panelOceny.BringToFront();
+            //panelOceny.BringToFront();
             string ktoZalogowany = LogowanieGlowne.mailZalogowanego;
-            /*
-                        // Creating a label
-                        Label label = new Label();
-                        label.Text = "Polski";
-
-                        // Add the label control to the TableLayoutPanel in the second row and third column
-                        tabelaOceny.Controls.Add(label, 0, 1);
-            */
 
             #region Legenda
             richLegenda.Dock = DockStyle.Fill;
@@ -220,13 +361,9 @@ namespace ProjektDziennikMydlo
                     label.Dock = DockStyle.Fill;
                     label.BackColor = Color.DimGray;
                     label.ReadOnly = true;
-                    //label.Enabled = false;
                     label.BorderStyle = BorderStyle.None;
                     label.SelectionColor = Color.WhiteSmoke;
                     label.SelectionFont = new Font(label.Font.FontFamily, rozmiarCzcionki);
-                    /*int lineHeight = label.GetPositionFromCharIndex(label.Text.Length - 1).Y;
-                    int verticalOffset = (label.Height - lineHeight) / 2;
-                    label.SelectedRtf = @"{\rtf1\ansi\par \pard\sa" + verticalOffset + @"\qc" + label.Text + @"\par}";*/
                     label.SelectionAlignment = HorizontalAlignment.Center;
                     switch (i)
                     {
@@ -327,10 +464,6 @@ namespace ProjektDziennikMydlo
                     label.BorderStyle = BorderStyle.None;
                     label.SelectionFont = new Font(label.Font.FontFamily, rozmiarCzcionki);
                     label.SelectionAlignment = HorizontalAlignment.Center;
-                    /*int lineHeight = label.GetPositionFromCharIndex(label.Text.Length - 1).Y;
-                    int verticalOffset = (label.Height - lineHeight) / 2;
-                    label.SelectedRtf = @"{\rtf1\ansi\par \pard\sa" + verticalOffset + @"\qc" + label.Text + @"\par}";*/
-                    //label.Text = "";
                     int j = 0;
 
                     //pętla przechodzi po każdym przedmiocie tyle razy ile jest w nim ocen
@@ -384,42 +517,6 @@ namespace ProjektDziennikMydlo
                         j++;
                     } while (j < ileOcen[i]);
 
-                    /*query = $"SELECT COUNT(grade) FROM grades INNER JOIN students ON grades.student = students.id_student WHERE students.email = '{ktoZalogowany}'";
-                    exec = new MySqlCommand(query, conn);
-                    conn.Open();
-                    result = exec.ExecuteReader();
-                    result.Read();
-                    int zIluPrzedmiotow = result.GetInt32(0);
-                    conn.Close();*/
-
-                    /*query = $"SELECT grade, type FROM grades INNER JOIN students ON grades.student = students.id_student WHERE students.email = '{ktoZalogowany}'";
-                    exec = new MySqlCommand(query, conn);
-                    conn.Open();
-                    result = exec.ExecuteReader();
-                    if (!czyPusta(ileOcen[i], label))
-                    {
-                        result.Read();
-                        switch (result[1])
-                        {
-                            case "S":
-                                label.Text += $"<span style='color:red'>{result[0]}, </span>";
-                                break;
-                            case "K":
-                                label.Text += $"<span style='color:DeepSkyBlue'>{result[0]}, </span>";
-                                break;
-                            case "O":
-                                label.Text += $"<span style='color:white'>{result[0]}, </span>";
-                                break;
-                            case "P":
-                                label.Text += $"<span style='color:YellowGreen'>{result[0]}, </span>";
-                                break;
-                        }
-
-                    }
-                    conn.Close();*/
-
-                    //conn.Close();
-
                     tabelaOceny.Controls.Add(label, 1, i + 1);
                     tabelaOceny.Controls.Remove(cellControl);
 
@@ -443,7 +540,7 @@ namespace ProjektDziennikMydlo
                     label.SelectionColor = Color.WhiteSmoke;
                     label.SelectionFont = new Font(label.Font.FontFamily, rozmiarCzcionki);
                     label.SelectionAlignment = HorizontalAlignment.Center;
-                   
+
                     if (tabelaOceny.GetControlFromPosition(1, i).Text == "Brak ocen.")
                     {
                         label.AppendText("Brak ocen.");
@@ -468,6 +565,7 @@ namespace ProjektDziennikMydlo
             }
 
             #endregion
+            panelOceny.BringToFront();
 
         }
 
