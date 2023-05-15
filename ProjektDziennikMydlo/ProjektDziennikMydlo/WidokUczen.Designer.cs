@@ -50,16 +50,19 @@
             ocenkiText = new TextBox();
             tabelaOceny = new TableLayoutPanel();
             richLegenda = new RichTextBox();
+            loading = new FlowLayoutPanel();
+            textBox1 = new TextBox();
             tableLayoutPanel4.SuspendLayout();
             panelPlanLekcji.SuspendLayout();
             panelMojeDane.SuspendLayout();
             panelOceny.SuspendLayout();
+            loading.SuspendLayout();
             SuspendLayout();
             // 
             // butPlanLek
             // 
             butPlanLek.ForeColor = SystemColors.ActiveCaptionText;
-            butPlanLek.Location = new Point(240, 654);
+            butPlanLek.Location = new Point(286, 654);
             butPlanLek.Margin = new Padding(2);
             butPlanLek.Name = "butPlanLek";
             butPlanLek.Size = new Size(145, 31);
@@ -71,7 +74,7 @@
             // butOceny
             // 
             butOceny.ForeColor = SystemColors.ActiveCaptionText;
-            butOceny.Location = new Point(389, 654);
+            butOceny.Location = new Point(435, 654);
             butOceny.Margin = new Padding(2);
             butOceny.Name = "butOceny";
             butOceny.Size = new Size(148, 31);
@@ -83,7 +86,7 @@
             // butFrek
             // 
             butFrek.ForeColor = SystemColors.ActiveCaptionText;
-            butFrek.Location = new Point(542, 654);
+            butFrek.Location = new Point(587, 654);
             butFrek.Margin = new Padding(2);
             butFrek.Name = "butFrek";
             butFrek.Size = new Size(158, 31);
@@ -94,7 +97,7 @@
             // butTerminy
             // 
             butTerminy.ForeColor = SystemColors.ActiveCaptionText;
-            butTerminy.Location = new Point(704, 654);
+            butTerminy.Location = new Point(749, 654);
             butTerminy.Margin = new Padding(2);
             butTerminy.Name = "butTerminy";
             butTerminy.Size = new Size(166, 31);
@@ -211,7 +214,7 @@
             planLekcjiText.ReadOnly = true;
             planLekcjiText.Size = new Size(831, 34);
             planLekcjiText.TabIndex = 10;
-            planLekcjiText.Text = "planik lekcji";
+            planLekcjiText.Text = "Plan lekcji\r\n";
             // 
             // panelPlanLekcji
             // 
@@ -354,6 +357,25 @@
             richLegenda.TabIndex = 12;
             richLegenda.Text = "LEGENDA\nS - sprawdzian\nK - kartkówka\nO - odpowiedź ustna\nP - praca domowa\n";
             // 
+            // loading
+            // 
+            loading.AccessibleName = "mojeDane";
+            loading.Controls.Add(textBox1);
+            loading.Location = new Point(9, 46);
+            loading.Name = "loading";
+            loading.Size = new Size(1160, 603);
+            loading.TabIndex = 13;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.DimGray;
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Location = new Point(3, 3);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(34, 272);
+            textBox1.TabIndex = 0;
+            // 
             // WidokUczen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -366,6 +388,7 @@
             Controls.Add(butFrek);
             Controls.Add(butOceny);
             Controls.Add(butPlanLek);
+            Controls.Add(loading);
             Controls.Add(panelMojeDane);
             Controls.Add(panelOceny);
             Controls.Add(panelPlanLekcji);
@@ -384,6 +407,8 @@
             panelMojeDane.PerformLayout();
             panelOceny.ResumeLayout(false);
             panelOceny.PerformLayout();
+            loading.ResumeLayout(false);
+            loading.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -411,5 +436,7 @@
         private RichTextBox richLegenda;
         private TableLayoutPanel tabelaPlanLekcji;
         private TextBox dataCzas;
+        private FlowLayoutPanel loading;
+        private TextBox textBox1;
     }
 }

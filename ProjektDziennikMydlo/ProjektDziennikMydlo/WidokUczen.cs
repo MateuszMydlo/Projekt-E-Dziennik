@@ -22,7 +22,7 @@ namespace ProjektDziennikMydlo
 
         List<Panel> listPanel = new List<Panel>();
         int index;
-        
+
         public WidokUczen()
         {
             InitializeComponent();
@@ -95,6 +95,7 @@ namespace ProjektDziennikMydlo
         }
         private void butPlanLek_Click(object sender, EventArgs e)
         {
+            loading.BringToFront();
             //panelPlanLekcji.BringToFront();
             string ktoZalogowany = LogowanieGlowne.mailZalogowanego;
             Control cellControl;
@@ -106,7 +107,7 @@ namespace ProjektDziennikMydlo
             int jakiDzien = 0; ;
 
             //dni tygodnia
-            for (int i = 1; i < 6; i++)
+            for (int i = 0; i < 6; i++)
             {
                 cellControl = tabelaPlanLekcji.GetControlFromPosition(i, 0);
                 if (!(cellControl is RichTextBox))
@@ -123,6 +124,9 @@ namespace ProjektDziennikMydlo
                     label.SelectionAlignment = HorizontalAlignment.Center;
                     switch (i)
                     {
+                        case 0:
+                            label.AppendText($"Godzina");
+                            break;
                         case 1:
                             label.AppendText($"Poniedziałek");
                             break;
@@ -164,31 +168,31 @@ namespace ProjektDziennikMydlo
                     switch (i)
                     {
                         case 1:
-                            label.AppendText($"7");
+                            label.AppendText($"7:00");
                             break;
                         case 2:
-                            label.AppendText($"8");
+                            label.AppendText($"8:00");
                             break;
                         case 3:
-                            label.AppendText($"9");
+                            label.AppendText($"9:00");
                             break;
                         case 4:
-                            label.AppendText($"10");
+                            label.AppendText($"10:00");
                             break;
                         case 5:
-                            label.AppendText($"11");
+                            label.AppendText($"11:00");
                             break;
                         case 6:
-                            label.AppendText($"12");
+                            label.AppendText($"12:00");
                             break;
                         case 7:
-                            label.AppendText($"13");
+                            label.AppendText($"13:00");
                             break;
                         case 8:
-                            label.AppendText($"14");
+                            label.AppendText($"14:00");
                             break;
                         case 9:
-                            label.AppendText($"15");
+                            label.AppendText($"15:00");
                             break;
                     }
                     tabelaPlanLekcji.Controls.Add(label, 0, i);
@@ -290,7 +294,7 @@ namespace ProjektDziennikMydlo
         }
         private void butOceny_Click(object sender, EventArgs e)
         {
-            //panelOceny.BringToFront();
+            loading.BringToFront();
             string ktoZalogowany = LogowanieGlowne.mailZalogowanego;
 
             #region Legenda
