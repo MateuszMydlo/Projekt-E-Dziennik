@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using MySqlConnector;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProjektDziennikMydlo
 {
@@ -16,7 +17,7 @@ namespace ProjektDziennikMydlo
     {
         static string connectionString = Form1.MyGlobals.connSTR; //pobiera string globalny wymagany do polaczenia sie z DB
         MySqlConnection conn = new MySqlConnection(connectionString);
-        
+
 
         List<Panel> listPanel = new List<Panel>();
         int index;
@@ -99,7 +100,182 @@ namespace ProjektDziennikMydlo
         #endregion
 
         #region Kamilowe
+        //FREKWENCJA
 
+        private void butFrek_Click(object sender, EventArgs e)
+        {
+            panelFrekwencja.BringToFront();
+            //pobieranie id ucznia
+            string id_uczen = null;
+            string zalogowany_uczen = LogowanieGlowne.mailZalogowanego;
+            string sql1 = $"SELECT id_student FROM students WHERE email = '{zalogowany_uczen}'";
+            MySqlConnection polaczenie1 = new MySqlConnection(connectionString);
+            MySqlCommand cmd1 = new MySqlCommand(sql1, polaczenie1);
+            cmd1.CommandTimeout = 60;
+            MySqlDataReader result;
+            try
+            {
+                polaczenie1.Open();
+                result = cmd1.ExecuteReader();
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+
+                    }
+                    polaczenie1.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            polaczenie1.Open();
+            result = cmd1.ExecuteReader();
+            result.Read();
+            id_uczen = $"{result[0]}";
+            id_label.Text = id_uczen;
+            polaczenie1.Close();
+
+            int id_uczeń = int.Parse(id_uczen);
+            //pobieranie danych do tabelek
+            string sql2 = $"SELECT attendance_date as \"Data\", count(present) as \"Ilość nieobecności\" FROM attendance WHERE present=0 AND student='{id_uczeń}' group by attendance_date;";
+            MySqlConnection polaczenie2 = new MySqlConnection(connectionString);
+            try
+            {
+                //otwórz połączenie z bazą danych
+                polaczenie2.Open();
+                //wykonaj polecenie SQL
+                using (MySqlCommand cmd2 = new MySqlCommand(sql2, polaczenie2))
+                {
+                    MySqlDataReader reader = cmd2.ExecuteReader();
+                    frtab.Rows.Clear();
+                    while (reader.Read())
+                    {
+                        frtab.Rows.Add(reader["Data"], reader["Ilość nieobecności"]);
+                    }
+
+                    reader.Close();
+
+                }
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Błąd połączenia z bazą danych");
+            }
+            polaczenie2.Close();
+        }
+        private void butTerminy_Click(object sender, EventArgs e)
+        {
+            panelSprawdziany.BringToFront();
+
+            //pobieranie danych o klasie ucznia
+            string klasa_uczen = null;
+            string zalogowany_uczen = LogowanieGlowne.mailZalogowanego;
+            string sql1 = $"SELECT class FROM students WHERE email = '{zalogowany_uczen}'";
+            MySqlConnection polaczenie1 = new MySqlConnection(connectionString);
+            MySqlCommand cmd1 = new MySqlCommand(sql1, polaczenie1);
+            cmd1.CommandTimeout = 60;
+            MySqlDataReader result;
+            try
+            {
+                polaczenie1.Open();
+                result = cmd1.ExecuteReader();
+                if (result.HasRows)
+                {
+                    while (result.Read())
+                    {
+
+                    }
+                    polaczenie1.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            polaczenie1.Open();
+            result = cmd1.ExecuteReader();
+            result.Read();
+            klasa_uczen = $"{result[0]}";
+            int klasa_uczeń = int.Parse(klasa_uczen);
+            polaczenie1.Close();
+
+
+
+            string sql2 = $"select sheduled_date as \"Termin sprawdzianu\", entry_date as \"Data wpisania\", subject as \"Przedmiot\", teacher as \"Nauczyciel\", comment as \"Temat\", test_type as \"Typ testu\" from test_schedule where class = '{klasa_uczen}'";
+            MySqlConnection polaczenie2 = new MySqlConnection(connectionString);
+            try
+            {
+                //otwórz połączenie z bazą danych
+                polaczenie2.Open();
+                //wykonaj polecenie SQL
+                using (MySqlCommand cmd2 = new MySqlCommand(sql2, polaczenie2))
+                {
+                    MySqlDataReader reader = cmd2.ExecuteReader();
+                    frtab.Rows.Clear();
+                    while (reader.Read())
+                    {
+                        sprawdziany_tabelka.Rows.Add(reader["Termin sprawdzianu"], reader["Data wpisania"], reader["Przedmiot"], reader["Nauczyciel"], reader["Temat"], reader["Typ testu"]);
+                    }
+
+                    reader.Close();
+
+                }
+
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show("Błąd połączenia z bazą danych");
+            }
+            polaczenie2.Close();
+
+        }
+
+        private void uspr_Click(object sender, EventArgs e)
+        {
+            int id_uczen=int.Parse(id_label.Text);
+            int columnIndex = 1;
+            DataGridViewRow selectedRow = frtab.CurrentRow;
+            string currentValue = selectedRow.Cells[columnIndex].Value.ToString();
+
+            if (currentValue=="1") 
+            {
+                
+                int newValue = 1;
+                selectedRow.Cells[columnIndex].Value = 0;
+                MySqlConnection polaczenie1 = new MySqlConnection("connectionString");
+                string sql1 = $"UPDATE attendance SET present='{newValue}' WHERE id_student='{id_uczen}'";
+                try
+                {
+                    polaczenie1.Open();
+                    MySqlCommand cmd1 = new MySqlCommand(sql1, polaczenie1);
+                    cmd1.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Nie udało się zmienić wartości w bazie danych");
+                }
+                polaczenie1.Close();
+                
+                
+
+                
+
+            }
+            else
+            {
+                MessageBox.Show("Brak godzin do usprawiedliwienia");
+            }
+
+        }
         #endregion
+
+
+
+
     }
 }
