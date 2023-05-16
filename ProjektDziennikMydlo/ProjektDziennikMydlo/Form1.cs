@@ -28,7 +28,7 @@ namespace ProjektDziennikMydlo
         #region ZMIENNE GLOBALNE
         public static class MyGlobals //zmienne dostêpne globalnie w ca³ym APP
         {
-            public static string connSTR = "datasource=" + File.ReadAllText("adres_ip_serwera") + ";port=" + File.ReadAllText("port_serwera") + ";username=root;password=;database=dziennik; Convert Zero Datetime=True; ";
+            public static string connSTR = "server=localhost;user=root;database=dziennik;port=3306;password=1234";
             public static int id_uzytkownika = 0;
             public static string adres_ip_serwera = File.ReadAllText("adres_ip_serwera");
             public static string port_serwera = File.ReadAllText("port_serwera");

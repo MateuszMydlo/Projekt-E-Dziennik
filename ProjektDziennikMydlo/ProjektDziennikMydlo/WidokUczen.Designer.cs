@@ -1,4 +1,6 @@
-﻿namespace ProjektDziennikMydlo
+using System.Runtime.CompilerServices;
+
+namespace ProjektDziennikMydlo
 {
     partial class WidokUczen
     {
@@ -28,6 +30,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
             butPlanLek = new Button();
             butOceny = new Button();
             butFrek = new Button();
@@ -50,13 +63,31 @@
             ocenkiText = new TextBox();
             tabelaOceny = new TableLayoutPanel();
             richLegenda = new RichTextBox();
+            TextboxFrekwencja = new TextBox();
+            frtab = new DataGridView();
+            Data = new DataGridViewTextBoxColumn();
+            Ilość_nieobecności = new DataGridViewTextBoxColumn();
+            panelFrekwencja = new FlowLayoutPanel();
+            uspr = new Button();
+            panelSprawdziany = new FlowLayoutPanel();
+            SPRtext = new TextBox();
+            sprawdziany_tabelka = new DataGridView();
+            sheduled_date = new DataGridViewTextBoxColumn();
+            entry_date = new DataGridViewTextBoxColumn();
+            subject = new DataGridViewTextBoxColumn();
+            teacher = new DataGridViewTextBoxColumn();
+            comment = new DataGridViewTextBoxColumn();
+            test_type = new DataGridViewTextBoxColumn();
+            id_label = new Label();
             loading = new FlowLayoutPanel();
-            textBox1 = new TextBox();
             tableLayoutPanel4.SuspendLayout();
             panelPlanLekcji.SuspendLayout();
             panelMojeDane.SuspendLayout();
             panelOceny.SuspendLayout();
-            loading.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)frtab).BeginInit();
+            panelFrekwencja.SuspendLayout();
+            panelSprawdziany.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sprawdziany_tabelka).BeginInit();
             SuspendLayout();
             // 
             // butPlanLek
@@ -93,6 +124,7 @@
             butFrek.TabIndex = 2;
             butFrek.Text = "Frekwencja";
             butFrek.UseVisualStyleBackColor = true;
+            butFrek.Click += butFrek_Click;
             // 
             // butTerminy
             // 
@@ -104,6 +136,7 @@
             butTerminy.TabIndex = 3;
             butTerminy.Text = "Terminy sprawdzianów";
             butTerminy.UseVisualStyleBackColor = true;
+            butTerminy.Click += butTerminy_Click;
             // 
             // butPowrot1
             // 
@@ -357,24 +390,203 @@
             richLegenda.TabIndex = 12;
             richLegenda.Text = "LEGENDA\nS - sprawdzian\nK - kartkówka\nO - odpowiedź ustna\nP - praca domowa\n";
             // 
+            // TextboxFrekwencja
+            // 
+            TextboxFrekwencja.BackColor = SystemColors.ControlDarkDark;
+            TextboxFrekwencja.BorderStyle = BorderStyle.FixedSingle;
+            TextboxFrekwencja.Dock = DockStyle.Top;
+            TextboxFrekwencja.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            TextboxFrekwencja.ForeColor = SystemColors.HighlightText;
+            TextboxFrekwencja.Location = new Point(3, 3);
+            TextboxFrekwencja.Name = "TextboxFrekwencja";
+            TextboxFrekwencja.Size = new Size(799, 35);
+            TextboxFrekwencja.TabIndex = 12;
+            TextboxFrekwencja.Text = "Frekwencja";
+            // 
+            // frtab
+            // 
+            dataGridViewCellStyle1.NullValue = null;
+            frtab.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            frtab.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            frtab.Columns.AddRange(new DataGridViewColumn[] { Data, Ilość_nieobecności });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.LightSkyBlue;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HotTrack;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            frtab.DefaultCellStyle = dataGridViewCellStyle4;
+            frtab.Dock = DockStyle.Bottom;
+            frtab.GridColor = SystemColors.ActiveBorder;
+            frtab.Location = new Point(3, 44);
+            frtab.Name = "frtab";
+            frtab.ReadOnly = true;
+            frtab.RowTemplate.Height = 25;
+            frtab.Size = new Size(763, 552);
+            frtab.TabIndex = 12;
+            // 
+            // Data
+            // 
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            Data.DefaultCellStyle = dataGridViewCellStyle2;
+            Data.Frozen = true;
+            Data.HeaderText = "Data";
+            Data.Name = "Data";
+            Data.ReadOnly = true;
+            Data.Resizable = DataGridViewTriState.False;
+            Data.Width = 360;
+            // 
+            // Ilość_nieobecności
+            // 
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            Ilość_nieobecności.DefaultCellStyle = dataGridViewCellStyle3;
+            Ilość_nieobecności.Frozen = true;
+            Ilość_nieobecności.HeaderText = "Ilość nieobecności";
+            Ilość_nieobecności.Name = "Ilość_nieobecności";
+            Ilość_nieobecności.ReadOnly = true;
+            Ilość_nieobecności.Resizable = DataGridViewTriState.False;
+            Ilość_nieobecności.Width = 360;
+            // 
+            // panelFrekwencja
+            // 
+            panelFrekwencja.BackColor = SystemColors.ControlDarkDark;
+            panelFrekwencja.Controls.Add(TextboxFrekwencja);
+            panelFrekwencja.Controls.Add(frtab);
+            panelFrekwencja.Controls.Add(uspr);
+            panelFrekwencja.ForeColor = SystemColors.ActiveCaptionText;
+            panelFrekwencja.Location = new Point(12, 46);
+            panelFrekwencja.Name = "panelFrekwencja";
+            panelFrekwencja.Size = new Size(1157, 612);
+            panelFrekwencja.TabIndex = 13;
+            // 
+            // uspr
+            // 
+            uspr.Location = new Point(772, 44);
+            uspr.Name = "uspr";
+            uspr.Size = new Size(252, 68);
+            uspr.TabIndex = 13;
+            uspr.Text = "Usprawiedliwienie godzin";
+            uspr.UseVisualStyleBackColor = true;
+            uspr.Click += uspr_Click;
+            // 
+            // panelSprawdziany
+            // 
+            panelSprawdziany.Controls.Add(SPRtext);
+            panelSprawdziany.Controls.Add(sprawdziany_tabelka);
+            panelSprawdziany.Location = new Point(12, 46);
+            panelSprawdziany.Name = "panelSprawdziany";
+            panelSprawdziany.Size = new Size(1157, 612);
+            panelSprawdziany.TabIndex = 13;
+            // 
+            // SPRtext
+            // 
+            SPRtext.BackColor = SystemColors.ControlDarkDark;
+            SPRtext.BorderStyle = BorderStyle.None;
+            SPRtext.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            SPRtext.ForeColor = SystemColors.MenuBar;
+            SPRtext.Location = new Point(3, 3);
+            SPRtext.Name = "SPRtext";
+            SPRtext.Size = new Size(1095, 28);
+            SPRtext.TabIndex = 1;
+            SPRtext.Text = "Terminy sprawdzianów";
+            // 
+            // sprawdziany_tabelka
+            // 
+            dataGridViewCellStyle5.BackColor = Color.White;
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            sprawdziany_tabelka.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            sprawdziany_tabelka.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            sprawdziany_tabelka.Columns.AddRange(new DataGridViewColumn[] { sheduled_date, entry_date, subject, teacher, comment, test_type });
+            sprawdziany_tabelka.Location = new Point(3, 37);
+            sprawdziany_tabelka.Name = "sprawdziany_tabelka";
+            sprawdziany_tabelka.RowTemplate.Height = 25;
+            sprawdziany_tabelka.Size = new Size(1154, 559);
+            sprawdziany_tabelka.TabIndex = 0;
+            // 
+            // sheduled_date
+            // 
+            dataGridViewCellStyle6.ForeColor = Color.Black;
+            dataGridViewCellStyle6.Format = "d";
+            dataGridViewCellStyle6.NullValue = null;
+            sheduled_date.DefaultCellStyle = dataGridViewCellStyle6;
+            sheduled_date.Frozen = true;
+            sheduled_date.HeaderText = "Termin sprawdzianu";
+            sheduled_date.Name = "sheduled_date";
+            sheduled_date.ReadOnly = true;
+            sheduled_date.Width = 185;
+            // 
+            // entry_date
+            // 
+            dataGridViewCellStyle7.ForeColor = Color.Black;
+            dataGridViewCellStyle7.Format = "d";
+            dataGridViewCellStyle7.NullValue = null;
+            entry_date.DefaultCellStyle = dataGridViewCellStyle7;
+            entry_date.Frozen = true;
+            entry_date.HeaderText = "Data wpisania";
+            entry_date.Name = "entry_date";
+            entry_date.ReadOnly = true;
+            entry_date.Width = 185;
+            // 
+            // subject
+            // 
+            dataGridViewCellStyle8.ForeColor = Color.Black;
+            subject.DefaultCellStyle = dataGridViewCellStyle8;
+            subject.Frozen = true;
+            subject.HeaderText = "Przedmiot";
+            subject.Name = "subject";
+            subject.ReadOnly = true;
+            subject.Width = 185;
+            // 
+            // teacher
+            // 
+            dataGridViewCellStyle9.ForeColor = Color.Black;
+            teacher.DefaultCellStyle = dataGridViewCellStyle9;
+            teacher.Frozen = true;
+            teacher.HeaderText = "Nauczyciel";
+            teacher.Name = "teacher";
+            teacher.ReadOnly = true;
+            teacher.Width = 185;
+            // 
+            // comment
+            // 
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            comment.DefaultCellStyle = dataGridViewCellStyle10;
+            comment.Frozen = true;
+            comment.HeaderText = "Temat sprawdzianu";
+            comment.Name = "comment";
+            comment.ReadOnly = true;
+            comment.Width = 185;
+            // 
+            // test_type
+            // 
+            dataGridViewCellStyle11.ForeColor = Color.Black;
+            test_type.DefaultCellStyle = dataGridViewCellStyle11;
+            test_type.Frozen = true;
+            test_type.HeaderText = "Typ sprawdzianu";
+            test_type.Name = "test_type";
+            test_type.ReadOnly = true;
+            test_type.Width = 185;
+            // 
+            // id_label
+            // 
+            id_label.AutoSize = true;
+            id_label.ForeColor = Color.DimGray;
+            id_label.Location = new Point(471, 9);
+            id_label.Name = "id_label";
+            id_label.Size = new Size(38, 15);
+            id_label.TabIndex = 14;
+            id_label.Text = "label1";
+            // 
             // loading
             // 
             loading.AccessibleName = "mojeDane";
-            loading.Controls.Add(textBox1);
             loading.Location = new Point(9, 46);
             loading.Name = "loading";
             loading.Size = new Size(1160, 603);
             loading.TabIndex = 13;
-            // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.DimGray;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(3, 3);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(34, 272);
-            textBox1.TabIndex = 0;
             // 
             // WidokUczen
             // 
@@ -382,6 +594,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DimGray;
             ClientSize = new Size(1181, 696);
+            Controls.Add(id_label);
             Controls.Add(butMojeDane);
             Controls.Add(butPowrot1);
             Controls.Add(butTerminy);
@@ -392,6 +605,8 @@
             Controls.Add(panelMojeDane);
             Controls.Add(panelOceny);
             Controls.Add(panelPlanLekcji);
+            Controls.Add(panelFrekwencja);
+            Controls.Add(panelSprawdziany);
             ForeColor = SystemColors.ButtonHighlight;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(2);
@@ -407,9 +622,14 @@
             panelMojeDane.PerformLayout();
             panelOceny.ResumeLayout(false);
             panelOceny.PerformLayout();
-            loading.ResumeLayout(false);
-            loading.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)frtab).EndInit();
+            panelFrekwencja.ResumeLayout(false);
+            panelFrekwencja.PerformLayout();
+            panelSprawdziany.ResumeLayout(false);
+            panelSprawdziany.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)sprawdziany_tabelka).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -433,10 +653,27 @@
         private FlowLayoutPanel panelOceny;
         private TextBox ocenkiText;
         private TableLayoutPanel tabelaOceny;
+
+        private DataGridView frtab;
+        private FlowLayoutPanel panelFrekwencja;
+        private DataGridViewTextBoxColumn Data;
+        private DataGridViewTextBoxColumn Ilość_nieobecności;
+        private TextBox TextboxFrekwencja;
+        private FlowLayoutPanel panelSprawdziany;
+        private DataGridView sprawdziany_tabelka;
+        private TextBox SPRtext;
+        private DataGridViewTextBoxColumn sheduled_date;
+        private DataGridViewTextBoxColumn entry_date;
+        private DataGridViewTextBoxColumn subject;
+        private DataGridViewTextBoxColumn teacher;
+        private DataGridViewTextBoxColumn comment;
+        private DataGridViewTextBoxColumn test_type;
+        private Button uspr;
+        private Label id_label;
+
         private RichTextBox richLegenda;
         private TableLayoutPanel tabelaPlanLekcji;
         private TextBox dataCzas;
         private FlowLayoutPanel loading;
-        private TextBox textBox1;
     }
 }
