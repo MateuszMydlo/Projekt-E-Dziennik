@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2023 at 08:50 PM
+-- Generation Time: May 14, 2023 at 11:20 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -100,7 +100,10 @@ INSERT INTO `grades` (`id_grade`, `grade`, `type`, `subject`, `teacher`, `studen
 (7, '1', 'P', 6, 3, 24, '2023-03-27'),
 (8, '3', 'P', 6, 3, 22, '2023-03-27'),
 (9, '3', 'O', 5, 2, 8, '2023-03-28'),
-(10, '3', 'O', 5, 2, 9, '2023-03-28');
+(10, '3', 'O', 5, 2, 9, '2023-03-28'),
+(11, '5', 'K', 3, 1, 5, '2023-05-14'),
+(12, '2', 'S', 3, 1, 5, '2023-05-08'),
+(13, '3', 'O', 11, 5, 5, '2023-05-01');
 
 -- --------------------------------------------------------
 
@@ -190,18 +193,18 @@ CREATE TABLE `subjects` (
 --
 
 INSERT INTO `subjects` (`id_subject`, `name`) VALUES
-(3, 'Math'),
-(4, 'English'),
-(5, 'Polish'),
-(6, 'German'),
-(7, 'Chemistry'),
-(8, 'Biology'),
-(9, 'Geography'),
-(10, 'Physics'),
-(11, 'IT'),
-(12, 'PE'),
-(13, 'History'),
-(14, 'Homeroom');
+(3, 'Matematyka'),
+(4, 'Język Angielski'),
+(5, 'Język Polski'),
+(6, 'Język Niemiecki'),
+(7, 'Chemia'),
+(8, 'Biologia'),
+(9, 'Geografia'),
+(10, 'Fizyka'),
+(11, 'Informatyka'),
+(12, 'Wf'),
+(13, 'Historia'),
+(14, 'Godzina Wychowawcza');
 
 -- --------------------------------------------------------
 
@@ -254,9 +257,9 @@ CREATE TABLE `test_schedule` (
 --
 
 INSERT INTO `test_schedule` (`id_test`, `sheduled_date`, `entry_date`, `subject`, `teacher`, `class`, `comment`, `test_type`) VALUES
-(1, '2023-04-09', '2023-03-28', 3, 5, 0, 'testowy sprawdzian1', 'S'),
-(2, '2023-04-10', '2023-03-28', 3, 5, 0, 'testowy sprawdzian2', 'S'),
-(3, '2023-04-06', '2023-03-28', 3, 5, 0, 'testowa kartkówka1', 'K');
+(1, '2023-04-09', '2023-03-28', 3, 5, 3, 'testowy sprawdzian1', 'S'),
+(2, '2023-04-10', '2023-03-28', 3, 5, 5, 'testowy sprawdzian2', 'S'),
+(3, '2023-04-06', '2023-03-28', 3, 5, 4, 'testowa kartkówka1', 'K');
 
 -- --------------------------------------------------------
 
@@ -479,7 +482,7 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT for table `grades`
 --
 ALTER TABLE `grades`
-  MODIFY `id_grade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_grade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -540,7 +543,6 @@ ALTER TABLE `classes`
 ALTER TABLE `grades`
   ADD CONSTRAINT `grades_ibfk_1` FOREIGN KEY (`student`) REFERENCES `students` (`id_student`),
   ADD CONSTRAINT `grades_ibfk_2` FOREIGN KEY (`teacher`) REFERENCES `teachers` (`id_teacher`);
-  ADD CONSTRAINT `grades_ibfk_3` FOREIGN KEY (`subject`) REFERENCES `subjects` (`id_subject`);
 
 --
 -- Constraints for table `students`
@@ -560,7 +562,6 @@ ALTER TABLE `teachers`
 ALTER TABLE `test_schedule`
   ADD CONSTRAINT `test_schedule_ibfk_1` FOREIGN KEY (`teacher`) REFERENCES `teachers` (`id_teacher`),
   ADD CONSTRAINT `test_schedule_ibfk_2` FOREIGN KEY (`subject`) REFERENCES `subjects` (`id_subject`);
-  ADD CONSTRAINT `test_schedule_ibfk_3` FOREIGN KEY (`class`) REFERENCES `classes` (`id_class`);
 
 --
 -- Constraints for table `timetable`

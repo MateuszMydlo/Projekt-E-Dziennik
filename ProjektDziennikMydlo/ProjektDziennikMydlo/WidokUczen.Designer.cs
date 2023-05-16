@@ -1,4 +1,6 @@
-﻿namespace ProjektDziennikMydlo
+using System.Runtime.CompilerServices;
+
+namespace ProjektDziennikMydlo
 {
     partial class WidokUczen
     {
@@ -28,7 +30,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode1 = new TreeNode("Ostatnie Oceny");
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
@@ -52,14 +53,16 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             label50 = new Label();
             butMojeDane = new Button();
-            test1 = new TextBox();
+            planLekcjiText = new TextBox();
             panelPlanLekcji = new FlowLayoutPanel();
+            tabelaPlanLekcji = new TableLayoutPanel();
             panelMojeDane = new FlowLayoutPanel();
             powitanieImie = new TextBox();
-            treeView1 = new TreeView();
+            dataCzas = new TextBox();
             panelOceny = new FlowLayoutPanel();
-            textBox1 = new TextBox();
+            ocenkiText = new TextBox();
             tabelaOceny = new TableLayoutPanel();
+            richLegenda = new RichTextBox();
             TextboxFrekwencja = new TextBox();
             frtab = new DataGridView();
             Data = new DataGridViewTextBoxColumn();
@@ -76,6 +79,7 @@
             comment = new DataGridViewTextBoxColumn();
             test_type = new DataGridViewTextBoxColumn();
             id_label = new Label();
+            loading = new FlowLayoutPanel();
             tableLayoutPanel4.SuspendLayout();
             panelPlanLekcji.SuspendLayout();
             panelMojeDane.SuspendLayout();
@@ -89,7 +93,7 @@
             // butPlanLek
             // 
             butPlanLek.ForeColor = SystemColors.ActiveCaptionText;
-            butPlanLek.Location = new Point(240, 654);
+            butPlanLek.Location = new Point(286, 654);
             butPlanLek.Margin = new Padding(2);
             butPlanLek.Name = "butPlanLek";
             butPlanLek.Size = new Size(145, 31);
@@ -101,7 +105,7 @@
             // butOceny
             // 
             butOceny.ForeColor = SystemColors.ActiveCaptionText;
-            butOceny.Location = new Point(389, 654);
+            butOceny.Location = new Point(435, 654);
             butOceny.Margin = new Padding(2);
             butOceny.Name = "butOceny";
             butOceny.Size = new Size(148, 31);
@@ -113,7 +117,7 @@
             // butFrek
             // 
             butFrek.ForeColor = SystemColors.ActiveCaptionText;
-            butFrek.Location = new Point(542, 654);
+            butFrek.Location = new Point(587, 654);
             butFrek.Margin = new Padding(2);
             butFrek.Name = "butFrek";
             butFrek.Size = new Size(158, 31);
@@ -125,7 +129,7 @@
             // butTerminy
             // 
             butTerminy.ForeColor = SystemColors.ActiveCaptionText;
-            butTerminy.Location = new Point(704, 654);
+            butTerminy.Location = new Point(749, 654);
             butTerminy.Margin = new Padding(2);
             butTerminy.Name = "butTerminy";
             butTerminy.Size = new Size(166, 31);
@@ -231,33 +235,62 @@
             butMojeDane.UseVisualStyleBackColor = true;
             butMojeDane.Click += butMojeDane_Click;
             // 
-            // test1
+            // planLekcjiText
             // 
-            test1.BackColor = Color.DimGray;
-            test1.BorderStyle = BorderStyle.None;
-            test1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            test1.ForeColor = SystemColors.MenuBar;
-            test1.Location = new Point(3, 3);
-            test1.Multiline = true;
-            test1.Name = "test1";
-            test1.Size = new Size(428, 34);
-            test1.TabIndex = 10;
-            test1.Text = "planik lekcji";
+            planLekcjiText.BackColor = Color.DimGray;
+            planLekcjiText.BorderStyle = BorderStyle.None;
+            planLekcjiText.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            planLekcjiText.ForeColor = SystemColors.MenuBar;
+            planLekcjiText.Location = new Point(3, 3);
+            planLekcjiText.Multiline = true;
+            planLekcjiText.Name = "planLekcjiText";
+            planLekcjiText.ReadOnly = true;
+            planLekcjiText.Size = new Size(831, 34);
+            planLekcjiText.TabIndex = 10;
+            planLekcjiText.Text = "Plan lekcji\r\n";
             // 
             // panelPlanLekcji
             // 
             panelPlanLekcji.AccessibleName = "planLekcji";
-            panelPlanLekcji.Controls.Add(test1);
+            panelPlanLekcji.Controls.Add(planLekcjiText);
+            panelPlanLekcji.Controls.Add(tabelaPlanLekcji);
             panelPlanLekcji.Location = new Point(12, 46);
             panelPlanLekcji.Name = "panelPlanLekcji";
             panelPlanLekcji.Size = new Size(1157, 603);
             panelPlanLekcji.TabIndex = 11;
             // 
+            // tabelaPlanLekcji
+            // 
+            tabelaPlanLekcji.BackgroundImageLayout = ImageLayout.None;
+            tabelaPlanLekcji.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tabelaPlanLekcji.ColumnCount = 6;
+            tabelaPlanLekcji.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
+            tabelaPlanLekcji.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
+            tabelaPlanLekcji.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
+            tabelaPlanLekcji.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
+            tabelaPlanLekcji.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18F));
+            tabelaPlanLekcji.Location = new Point(3, 43);
+            tabelaPlanLekcji.Name = "tabelaPlanLekcji";
+            tabelaPlanLekcji.RowCount = 10;
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tabelaPlanLekcji.Size = new Size(1154, 560);
+            tabelaPlanLekcji.TabIndex = 11;
+            // 
             // panelMojeDane
             // 
             panelMojeDane.AccessibleName = "mojeDane";
             panelMojeDane.Controls.Add(powitanieImie);
-            panelMojeDane.Controls.Add(treeView1);
+            panelMojeDane.Controls.Add(dataCzas);
             panelMojeDane.Location = new Point(12, 46);
             panelMojeDane.Name = "panelMojeDane";
             panelMojeDane.Size = new Size(1157, 603);
@@ -267,76 +300,95 @@
             // 
             powitanieImie.BackColor = Color.DimGray;
             powitanieImie.BorderStyle = BorderStyle.None;
-            powitanieImie.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            powitanieImie.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
             powitanieImie.ForeColor = SystemColors.MenuBar;
             powitanieImie.Location = new Point(3, 3);
             powitanieImie.Multiline = true;
             powitanieImie.Name = "powitanieImie";
-            powitanieImie.Size = new Size(1154, 61);
+            powitanieImie.ReadOnly = true;
+            powitanieImie.Size = new Size(529, 121);
             powitanieImie.TabIndex = 10;
             powitanieImie.Text = "Zalogowano jako: Imie Nazwisko";
             // 
-            // treeView1
+            // dataCzas
             // 
-            treeView1.BackColor = Color.DimGray;
-            treeView1.Location = new Point(3, 70);
-            treeView1.Name = "treeView1";
-            treeNode1.Name = "ostatnieOceny";
-            treeNode1.Text = "Ostatnie Oceny";
-            treeView1.Nodes.AddRange(new TreeNode[] { treeNode1 });
-            treeView1.Size = new Size(344, 542);
-            treeView1.TabIndex = 11;
+            dataCzas.BackColor = Color.DimGray;
+            dataCzas.BorderStyle = BorderStyle.None;
+            dataCzas.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataCzas.ForeColor = SystemColors.MenuBar;
+            dataCzas.Location = new Point(538, 3);
+            dataCzas.Multiline = true;
+            dataCzas.Name = "dataCzas";
+            dataCzas.ReadOnly = true;
+            dataCzas.Size = new Size(616, 121);
+            dataCzas.TabIndex = 11;
+            dataCzas.Text = "Zalogowano jako: Imie Nazwisko";
+            dataCzas.TextAlign = HorizontalAlignment.Right;
             // 
             // panelOceny
             // 
             panelOceny.AccessibleName = "planLekcji";
-            panelOceny.Controls.Add(textBox1);
+            panelOceny.Controls.Add(ocenkiText);
             panelOceny.Controls.Add(tabelaOceny);
+            panelOceny.Controls.Add(richLegenda);
             panelOceny.Location = new Point(12, 46);
             panelOceny.Name = "panelOceny";
             panelOceny.Size = new Size(1157, 603);
             panelOceny.TabIndex = 12;
             // 
-            // textBox1
+            // ocenkiText
             // 
-            textBox1.BackColor = Color.DimGray;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.ForeColor = SystemColors.MenuBar;
-            textBox1.Location = new Point(3, 3);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(1021, 34);
-            textBox1.TabIndex = 10;
-            textBox1.Text = "Ocenki";
+            ocenkiText.BackColor = Color.DimGray;
+            ocenkiText.BorderStyle = BorderStyle.None;
+            ocenkiText.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point);
+            ocenkiText.ForeColor = SystemColors.MenuBar;
+            ocenkiText.Location = new Point(3, 3);
+            ocenkiText.Multiline = true;
+            ocenkiText.Name = "ocenkiText";
+            ocenkiText.ReadOnly = true;
+            ocenkiText.Size = new Size(685, 34);
+            ocenkiText.TabIndex = 10;
+            ocenkiText.Text = "Ocenki";
             // 
             // tabelaOceny
             // 
-            tabelaOceny.BackColor = Color.Gray;
+            tabelaOceny.BackColor = Color.DimGray;
             tabelaOceny.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tabelaOceny.ColumnCount = 5;
-            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 11.11111F));
-            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
-            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
-            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
-            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.2222233F));
+            tabelaOceny.ColumnCount = 3;
+            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
+            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tabelaOceny.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tabelaOceny.Location = new Point(3, 43);
             tabelaOceny.Name = "tabelaOceny";
-            tabelaOceny.RowCount = 12;
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 8.333332F));
-            tabelaOceny.Size = new Size(1154, 560);
+            tabelaOceny.RowCount = 13;
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.RowStyles.Add(new RowStyle(SizeType.Percent, 7.692308F));
+            tabelaOceny.Size = new Size(637, 560);
             tabelaOceny.TabIndex = 11;
+            // 
+            // richLegenda
+            // 
+            richLegenda.BackColor = Color.DimGray;
+            richLegenda.BorderStyle = BorderStyle.None;
+            richLegenda.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            richLegenda.ForeColor = Color.WhiteSmoke;
+            richLegenda.Location = new Point(646, 43);
+            richLegenda.Name = "richLegenda";
+            richLegenda.ReadOnly = true;
+            richLegenda.Size = new Size(448, 208);
+            richLegenda.TabIndex = 12;
+            richLegenda.Text = "LEGENDA\nS - sprawdzian\nK - kartkówka\nO - odpowiedź ustna\nP - praca domowa\n";
             // 
             // TextboxFrekwencja
             // 
@@ -521,11 +573,20 @@
             // id_label
             // 
             id_label.AutoSize = true;
+            id_label.ForeColor = Color.DimGray;
             id_label.Location = new Point(471, 9);
             id_label.Name = "id_label";
             id_label.Size = new Size(38, 15);
             id_label.TabIndex = 14;
             id_label.Text = "label1";
+            // 
+            // loading
+            // 
+            loading.AccessibleName = "mojeDane";
+            loading.Location = new Point(9, 46);
+            loading.Name = "loading";
+            loading.Size = new Size(1160, 603);
+            loading.TabIndex = 13;
             // 
             // WidokUczen
             // 
@@ -540,10 +601,11 @@
             Controls.Add(butFrek);
             Controls.Add(butOceny);
             Controls.Add(butPlanLek);
-            Controls.Add(panelFrekwencja);
+            Controls.Add(loading);
+            Controls.Add(panelMojeDane);
             Controls.Add(panelOceny);
             Controls.Add(panelPlanLekcji);
-            Controls.Add(panelMojeDane);
+            Controls.Add(panelFrekwencja);
             Controls.Add(panelSprawdziany);
             ForeColor = SystemColors.ButtonHighlight;
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -584,14 +646,14 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Label label50;
         private Button butMojeDane;
-        private TextBox test1;
+        private TextBox planLekcjiText;
         private FlowLayoutPanel panelPlanLekcji;
         private FlowLayoutPanel panelMojeDane;
         private TextBox powitanieImie;
         private FlowLayoutPanel panelOceny;
-        private TextBox textBox1;
-        private TreeView treeView1;
+        private TextBox ocenkiText;
         private TableLayoutPanel tabelaOceny;
+
         private DataGridView frtab;
         private FlowLayoutPanel panelFrekwencja;
         private DataGridViewTextBoxColumn Data;
@@ -608,5 +670,10 @@
         private DataGridViewTextBoxColumn test_type;
         private Button uspr;
         private Label id_label;
+
+        private RichTextBox richLegenda;
+        private TableLayoutPanel tabelaPlanLekcji;
+        private TextBox dataCzas;
+        private FlowLayoutPanel loading;
     }
 }
