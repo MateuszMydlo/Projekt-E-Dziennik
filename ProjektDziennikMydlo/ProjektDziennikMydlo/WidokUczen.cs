@@ -14,6 +14,7 @@ using System.Web;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 
+
 namespace ProjektDziennikMydlo
 {
     public partial class WidokUczen : Form
@@ -621,9 +622,7 @@ namespace ProjektDziennikMydlo
             MySqlConnection polaczenie2 = new MySqlConnection(connectionString);
             try
             {
-                //otwórz połączenie z bazą danych
                 polaczenie2.Open();
-                //wykonaj polecenie SQL
                 using (MySqlCommand cmd2 = new MySqlCommand(sql2, polaczenie2))
                 {
                     MySqlDataReader reader = cmd2.ExecuteReader();
@@ -644,6 +643,8 @@ namespace ProjektDziennikMydlo
             }
             polaczenie2.Close();
         }
+
+        // Terminy sprawdzianów
         private void butTerminy_Click(object sender, EventArgs e)
         {
             panelSprawdziany.BringToFront();
@@ -693,7 +694,7 @@ namespace ProjektDziennikMydlo
                 using (MySqlCommand cmd2 = new MySqlCommand(sql2, polaczenie2))
                 {
                     MySqlDataReader reader = cmd2.ExecuteReader();
-                    frtab.Rows.Clear();
+                    sprawdziany_tabelka.Rows.Clear();
                     while (reader.Read())
                     {
                         sprawdziany_tabelka.Rows.Add(reader["Termin sprawdzianu"], reader["Data wpisania"], reader["Przedmiot"], reader["Nauczyciel"], reader["Temat"], reader["Typ testu"]);
@@ -711,45 +712,39 @@ namespace ProjektDziennikMydlo
             polaczenie2.Close();
 
         }
-
+        // Przycisk do usprawiedliwiania godziń
         private void uspr_Click(object sender, EventArgs e)
         {
-            int id_uczen=int.Parse(id_label.Text);
-            int columnIndex = 1;
-            DataGridViewRow selectedRow = frtab.CurrentRow;
-            string currentValue = selectedRow.Cells[columnIndex].Value.ToString();
-
-            if (currentValue=="1") 
+            int newValue = 1;
+            int id_uczen = int.Parse(id_label.Text);
+            MySqlConnection polaczenie1 = new MySqlConnection(connectionString);
+            string sql1 = $"UPDATE attendance SET present='{newValue}' WHERE student='{id_uczen}'";
+            MySqlCommand cmd1 = new MySqlCommand(sql1, polaczenie1);
+            try
             {
-                
-                int newValue = 1;
-                selectedRow.Cells[columnIndex].Value = 0;
-                MySqlConnection polaczenie1 = new MySqlConnection("connectionString");
-                string sql1 = $"UPDATE attendance SET present='{newValue}' WHERE id_student='{id_uczen}'";
-                try
-                {
-                    polaczenie1.Open();
-                    MySqlCommand cmd1 = new MySqlCommand(sql1, polaczenie1);
-                    cmd1.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Nie udało się zmienić wartości w bazie danych");
-                }
+                polaczenie1.Open();
+                cmd1.Parameters.AddWithValue("@newValue", newValue);
+                cmd1.CommandText = sql1;
+                cmd1.ExecuteNonQuery();
+                MessageBox.Show("Twoje godziny zostały usprawiedliwione :-D");
+                MessageBox.Show("Odświerz stronę w celu zaktualizowania danych");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
                 polaczenie1.Close();
-                
-                
-
-                
-
             }
-            else
-            {
-                MessageBox.Show("Brak godzin do usprawiedliwienia");
-            }
+           
 
         }
+        
+        
+
         #endregion
+
 
 
 

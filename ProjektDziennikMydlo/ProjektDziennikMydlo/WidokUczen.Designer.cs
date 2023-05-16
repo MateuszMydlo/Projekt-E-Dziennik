@@ -601,12 +601,12 @@ namespace ProjektDziennikMydlo
             Controls.Add(butFrek);
             Controls.Add(butOceny);
             Controls.Add(butPlanLek);
+            Controls.Add(panelFrekwencja);
+            Controls.Add(panelSprawdziany);
             Controls.Add(loading);
             Controls.Add(panelMojeDane);
             Controls.Add(panelOceny);
             Controls.Add(panelPlanLekcji);
-            Controls.Add(panelFrekwencja);
-            Controls.Add(panelSprawdziany);
             ForeColor = SystemColors.ButtonHighlight;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(2);
