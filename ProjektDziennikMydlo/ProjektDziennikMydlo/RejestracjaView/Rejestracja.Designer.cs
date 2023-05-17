@@ -86,7 +86,9 @@
             this.Controls.Add(this.buttonDodajUcznia);
             this.Controls.Add(this.zapiszButton);
             this.Controls.Add(this.anulujButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Rejestracja";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rejestracja";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUczniowie)).EndInit();
             this.ResumeLayout(false);

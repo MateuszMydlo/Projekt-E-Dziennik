@@ -88,10 +88,11 @@
             // textBoxPesel
             // 
             this.textBoxPesel.Location = new System.Drawing.Point(134, 116);
-            this.textBoxPesel.MaxLength = 9;
+            this.textBoxPesel.MaxLength = 11;
             this.textBoxPesel.Name = "textBoxPesel";
             this.textBoxPesel.Size = new System.Drawing.Size(200, 23);
             this.textBoxPesel.TabIndex = 4;
+            this.textBoxPesel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPesel_KeyPress);
             // 
             // dateTimePickerDataUrodzenia
             // 
@@ -170,7 +171,9 @@
             this.Controls.Add(this.textBoxNazwisko);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxImie);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "RejestracjaUzupełnienieDanych";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RejestracjaUzupełnienieDanych";
             this.ResumeLayout(false);
             this.PerformLayout();

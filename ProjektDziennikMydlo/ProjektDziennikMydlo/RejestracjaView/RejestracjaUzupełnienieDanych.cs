@@ -11,6 +11,7 @@ namespace ProjektDziennikMydlo.RejestracjaView
         public RejestracjaUzupełnienieDanych()
         {
             InitializeComponent();
+            textBoxImie.Focus();
             var klasy = this.pobierzKlasy();
 
             comboBoxKlasa.ValueMember = null;
@@ -59,6 +60,11 @@ namespace ProjektDziennikMydlo.RejestracjaView
 
         private void ButtonDodajUcznia_Click(object sender, EventArgs e)
         {
+            DodajUcznia();
+        }
+
+        private void DodajUcznia()
+        {
             var imie = this.textBoxImie.Text;
             var nazwisko = this.textBoxNazwisko.Text;
             var pesel = this.textBoxPesel.Text;
@@ -67,7 +73,8 @@ namespace ProjektDziennikMydlo.RejestracjaView
             var klasa = this.comboBoxKlasa.SelectedValue as Klasa;
 
             var gdzieDaneNieprawidłowe = new List<string>();
-            if (String.IsNullOrEmpty(imie)) {
+            if (String.IsNullOrEmpty(imie))
+            {
                 gdzieDaneNieprawidłowe.Add("Imie");
             }
 
@@ -75,13 +82,13 @@ namespace ProjektDziennikMydlo.RejestracjaView
             {
                 gdzieDaneNieprawidłowe.Add("Nazwisko");
             }
-           
-            if (String.IsNullOrEmpty(email))
+
+            if (!IsEmailValid(email))
             {
                 gdzieDaneNieprawidłowe.Add("Email");
             }
 
-            if (String.IsNullOrEmpty(pesel))
+            if (String.IsNullOrEmpty(pesel) || pesel.Length != 11)
             {
                 gdzieDaneNieprawidłowe.Add("Pesel");
             }
@@ -91,7 +98,7 @@ namespace ProjektDziennikMydlo.RejestracjaView
                 gdzieDaneNieprawidłowe.Add("Klasa");
             }
 
-            if(gdzieDaneNieprawidłowe.Any())
+            if (gdzieDaneNieprawidłowe.Any())
             {
                 var nieprawidłowedaneString = string.Join("\n- ", gdzieDaneNieprawidłowe);
                 MessageBox.Show($"Nieprawidłowe dane w: \n- {nieprawidłowedaneString}");
@@ -111,6 +118,38 @@ namespace ProjektDziennikMydlo.RejestracjaView
             DodanieUczniaEvent?.Invoke(this, new DodanieUczniaEvent(uczeń));
             this.Hide();
             this.Close();
+        }
+
+        private void textBoxPesel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool IsEmailValid(string email)
+        {
+            try
+            {
+                new System.Net.Mail.MailAddress(email);
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

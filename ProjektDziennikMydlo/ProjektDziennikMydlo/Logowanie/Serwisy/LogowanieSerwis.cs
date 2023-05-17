@@ -7,6 +7,14 @@ namespace ProjektDziennikMydlo.Logowanie.Serwisy
     {
         public LogowanieInfo Zaloguj(string nazwaUrzytkownika, string hasłoZInputa, bool czyUczeń)
         {
+            if(String.IsNullOrEmpty(nazwaUrzytkownika) || String.IsNullOrEmpty(hasłoZInputa))
+            {
+                return new LogowanieInfo()
+                {
+                    czyZalogowano = false
+                };
+            }
+
             string connectionString = Form1.MyGlobals.connSTR;//pobiera string globalny wymagany do polaczenia sie z DB
 
             string? nazwaTabeli;
@@ -41,7 +49,7 @@ namespace ProjektDziennikMydlo.Logowanie.Serwisy
                         {
                             var rolaZBazyDanych = result.GetString(1);
 
-                            //Tutaj sprawdzam czy jest wicedyrektorem bo wice jest o numerze 2
+                            //Tutaj sprawdzam czy jest wicedyrektorem bo wicedyrektor jest o numerze 2
                             if(rolaZBazyDanych ==  "2")
                             {
                                 rolaEnum = Rola.SuperUser;

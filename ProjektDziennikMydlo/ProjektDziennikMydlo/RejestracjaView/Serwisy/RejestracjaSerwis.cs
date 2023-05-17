@@ -32,7 +32,10 @@ namespace ProjektDziennikMydlo.RejestracjaView.Serwisy
                 result = exec.ExecuteReader();
                 conn.Close();
             }
-            catch (Exception ex){}
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         private string CreatePassword(int length)

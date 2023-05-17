@@ -176,7 +176,7 @@
             this.butPowrot.Location = new System.Drawing.Point(0, 0);
             this.butPowrot.Margin = new System.Windows.Forms.Padding(2);
             this.butPowrot.Name = "butPowrot";
-            this.butPowrot.Size = new System.Drawing.Size(78, 20);
+            this.butPowrot.Size = new System.Drawing.Size(78, 23);
             this.butPowrot.TabIndex = 8;
             this.butPowrot.Text = "< Wyloguj";
             this.butPowrot.UseVisualStyleBackColor = true;

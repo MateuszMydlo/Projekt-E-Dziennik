@@ -1,5 +1,4 @@
 ﻿using ProjektDziennikMydlo.Logowanie.Serwisy;
-using System.Security.Cryptography.X509Certificates;
 
 namespace ProjektDziennikMydlo
 {
@@ -9,7 +8,6 @@ namespace ProjektDziennikMydlo
         public static string mailZalogowanego = "";
         public LogowanieGlowne(bool czyUczeń)
         {
-
             _czyUczeń = czyUczeń;
             if(_czyUczeń)
             {
@@ -19,6 +17,7 @@ namespace ProjektDziennikMydlo
                 this.Text = "E-Dziennik -> Logowanie Pracownik";
             }
             InitializeComponent();
+            emailInput.Focus();
         }
 
         private void ButtonZaloguj(object sender, EventArgs e)

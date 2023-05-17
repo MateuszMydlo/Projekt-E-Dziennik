@@ -214,9 +214,9 @@ namespace ProjektDziennikMydlo
         private void butPowrot_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            this.Close();
             var widokInicialny = new Form1();
-            widokInicialny.Show();
+            widokInicialny.ShowDialog();
+            this.Close();
         }
     }
 }

@@ -56,7 +56,7 @@ namespace ProjektDziennikMydlo.RejestracjaView
             UczniowieLista.Add(e.Uczeń);
             dataGridViewUczniowie.Rows.Add(newRow);
         }
-
+        
         private void dataGridViewUczniowie_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -75,6 +75,7 @@ namespace ProjektDziennikMydlo.RejestracjaView
         {
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
             dataGridViewUczniowie.Rows.RemoveAt((int)clickedItem.Tag);
+            UczniowieLista.RemoveAt((int)clickedItem.Tag);
         }
 
         private void anulujButton_Click(object sender, EventArgs e)

@@ -34,11 +34,12 @@
             this.labelLogin = new System.Windows.Forms.Label();
             this.labelHaslo = new System.Windows.Forms.Label();
             this.returnButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // butZaloguj
             // 
-            this.butZaloguj.Location = new System.Drawing.Point(340, 231);
+            this.butZaloguj.Location = new System.Drawing.Point(340, 259);
             this.butZaloguj.Margin = new System.Windows.Forms.Padding(2);
             this.butZaloguj.Name = "butZaloguj";
             this.butZaloguj.Size = new System.Drawing.Size(184, 32);
@@ -96,12 +97,22 @@
             this.returnButton.UseVisualStyleBackColor = true;
             this.returnButton.Click += new System.EventHandler(this.returnButton_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(340, 229);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Nie pamiętasz hasła? Kliknij tutaj";
+            // 
             // LogowanieGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.ClientSize = new System.Drawing.Size(881, 398);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.returnButton);
             this.Controls.Add(this.labelHaslo);
             this.Controls.Add(this.labelLogin);
@@ -111,7 +122,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LogowanieGlowne";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +136,6 @@
         private Label labelLogin;
         private Label labelHaslo;
         private Button returnButton;
+        private Label label1;
     }
 }
