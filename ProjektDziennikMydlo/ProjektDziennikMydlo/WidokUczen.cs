@@ -684,7 +684,25 @@ namespace ProjektDziennikMydlo
 
 
 
-            string sql2 = $"select sheduled_date as \"Termin sprawdzianu\", entry_date as \"Data wpisania\", subject as \"Przedmiot\", teacher as \"Nauczyciel\", comment as \"Temat\", test_type as \"Typ testu\" from test_schedule where class = '{klasa_uczen}'";
+
+            Dictionary<int, string> przedmiotyMapa = new Dictionary<int, string>
+            {
+            { 3, "Matematyka" },
+            { 4, "English" },
+            { 5, "Polish" },
+            { 6, "German" },
+            { 7, "Chemistry" },
+            { 8, "Biology" },
+            { 9, "Geography" },
+            { 10, "Physics" },
+            { 11, "IT" },
+            { 12, "PE" },
+            { 13, "History" },
+            { 14, "Homeroom" },
+
+            };
+
+            string sql2 = $"SELECT sheduled_date AS \"Termin sprawdzianu\", entry_date AS \"Data wpisania\", subject AS \"Przedmiot\", name, surname, comment AS \"Temat\", test_type AS \"Typ testu\" FROM test_schedule JOIN teachers ON teacher = id_teacher WHERE class = '{klasa_uczen}'";
             MySqlConnection polaczenie2 = new MySqlConnection(connectionString);
             try
             {
@@ -697,7 +715,14 @@ namespace ProjektDziennikMydlo
                     sprawdziany_tabelka.Rows.Clear();
                     while (reader.Read())
                     {
-                        sprawdziany_tabelka.Rows.Add(reader["Termin sprawdzianu"], reader["Data wpisania"], reader["Przedmiot"], reader["Nauczyciel"], reader["Temat"], reader["Typ testu"]);
+                        string imie = reader["name"].ToString();
+                        string nazwisko = reader["surname"].ToString();
+                        string Nauczyciel = $"{imie} {nazwisko}";
+
+                        int numerPrzedmiotu = Convert.ToInt32(reader["Przedmiot"]);
+                        string nazwaPrzedmiotu = przedmiotyMapa.ContainsKey(numerPrzedmiotu) ? przedmiotyMapa[numerPrzedmiotu] : "Nieznany przedmiot";
+
+                        sprawdziany_tabelka.Rows.Add(reader["Termin sprawdzianu"], reader["Data wpisania"], nazwaPrzedmiotu, Nauczyciel, reader["Temat"], reader["Typ testu"]);
                     }
 
                     reader.Close();
